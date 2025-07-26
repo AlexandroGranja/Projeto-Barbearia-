@@ -45,41 +45,51 @@ export function AppSidebar() {
 
   const isActive = (path: string) => currentPath === path
   const getNavCls = ({ isActive }: { isActive: boolean }) =>
-    isActive ? "bg-primary text-primary-foreground font-medium shadow-glow" : "hover:bg-primary/10"
+    isActive ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg" : "hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:text-purple-700 transition-all duration-200"
 
   return (
     <Sidebar
-      className={collapsed ? "w-14" : "w-64"}
+      className={`${collapsed ? "w-14" : "w-64"} bg-white border-r border-gray-200 shadow-xl`}
       collapsible="icon"
     >
-      <SidebarTrigger className="m-2 self-end" />
+      <SidebarTrigger className="m-2 self-end text-gray-600 hover:text-purple-600 hover:bg-purple-50 rounded-lg transition-all duration-200" />
 
-      <SidebarContent className="bg-gradient-card">
+      <SidebarContent className="bg-white">
         {/* Header */}
-        <div className="p-4 border-b border-border">
-          <div className="flex items-center gap-2">
-            <div className="p-2 bg-gradient-primary rounded-lg">
-              <Sparkles className="h-6 w-6 text-white" />
+        <div className="p-6 border-b border-gray-100">
+          <div className="flex items-center gap-3">
+            <div className="p-3 bg-gradient-to-br from-purple-600 to-pink-600 rounded-xl shadow-lg">
+              <Scissors className="h-6 w-6 text-white" />
             </div>
             {!collapsed && (
               <div>
-                <h2 className="font-bold text-foreground">Wats Insight AI</h2>
-                <p className="text-xs text-muted-foreground">Automação Salão</p>
+                <h2 className="font-bold text-gray-800 text-lg">Barbearia</h2>
+                <p className="text-sm text-gray-500">Sistema Profissional</p>
               </div>
             )}
           </div>
         </div>
 
-        <SidebarGroup>
-          <SidebarGroupLabel>Principal</SidebarGroupLabel>
+        <SidebarGroup className="px-4 py-6">
+          <SidebarGroupLabel className="text-gray-600 font-semibold text-xs uppercase tracking-wider mb-3">Principal</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-2">
               {mainItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} end className={getNavCls}>
-                      <item.icon className="h-4 w-4" />
-                      {!collapsed && <span>{item.title}</span>}
+                    <NavLink 
+                      to={item.url} 
+                      end 
+                      className={({ isActive }) => 
+                        `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                          isActive 
+                            ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg transform scale-105" 
+                            : "text-gray-600 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:text-purple-700"
+                        }`
+                      }
+                    >
+                      <item.icon className="h-5 w-5" />
+                      {!collapsed && <span className="font-medium">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
@@ -88,16 +98,25 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel>Automação</SidebarGroupLabel>
+        <SidebarGroup className="px-4 py-6">
+          <SidebarGroupLabel className="text-gray-600 font-semibold text-xs uppercase tracking-wider mb-3">Automação</SidebarGroupLabel>
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-2">
               {automationItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
-                    <NavLink to={item.url} className={getNavCls}>
-                      <item.icon className="h-4 w-4" />
-                      {!collapsed && <span>{item.title}</span>}
+                    <NavLink 
+                      to={item.url} 
+                      className={({ isActive }) => 
+                        `flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                          isActive 
+                            ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg transform scale-105" 
+                            : "text-gray-600 hover:bg-gradient-to-r hover:from-purple-50 hover:to-pink-50 hover:text-purple-700"
+                        }`
+                      }
+                    >
+                      <item.icon className="h-5 w-5" />
+                      {!collapsed && <span className="font-medium">{item.title}</span>}
                     </NavLink>
                   </SidebarMenuButton>
                 </SidebarMenuItem>
