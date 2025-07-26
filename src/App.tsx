@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppSidebar } from "./components/AppSidebar";
 import Dashboard from "./pages/Dashboard";
 import ClientInterface from "./pages/ClientInterface";
+import ClientInterfaceModernPro from "./pages/ClientInterfaceModernPro";
 import CutAnalysis from "./pages/CutAnalysis";
 import N8nGuide from "./pages/N8nGuide";
 import NotFound from "./pages/NotFound";
@@ -29,6 +30,7 @@ const App = () => (
               <Routes>
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/client-interface" element={<ClientInterface />} />
+                <Route path="/client-interface-pro" element={<ClientInterfaceModernPro />} />
                 <Route path="/cut-analysis" element={<CutAnalysis />} />
                 <Route path="/settings" element={<N8nGuide />} />
                 <Route path="*" element={<NotFound />} />
